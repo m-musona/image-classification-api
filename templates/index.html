@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Classification Service</h1>
+        <p>Upload an image to classify its contents with an AI-powered model.</p>
+        <form action="/upload/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required />
+            <button type="submit">Classify Image</button>
+        </form>
+    </div>
+    
+    {% if results %}
+        <div class="results">
+            <h1>Top 5 Classification Results</h2>
+            <ul>
+                {% for label, accuracy in results.items() %}
+                <li><strong>{{ label }}</strong>: {{ accuracy }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    
+</body>
+</html>
